@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Hopitivity</title>
+</head>
+<script>
+    var clickSound = new Sound("click-2.mp3");
+</script>
+
+<div class="wrapper">
+<body class= "body-custom">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+    </style>
+
+    <style>
+        :root{
+            --light-pink: #FFE5D9;
+            --light-orange: #ffd9b7;
+            --light-blue: #D9DFFF;
+            --light-green: #c3e9be;
+            --light-sky-blue: #bee2ec;
+            --light-purple: #EAD9FF;
+
+            --dark-pink:#F0A497;
+            --dark-orange: #f5af72;
+            --dark-blue: #97A5F0;
+            --dark-green: #90D28F;
+            --dark-sky-blue: #90cbd3;
+            --dark-purple: #ae8ed8;
+
+            --accent-pink: #AA0000;
+            --accent-orange: #d36200;
+            --accent-blue: #091c8a;
+            --accent-green: #055703;
+            --accent-sky-blue: #044d57;
+            --accent-purple: #22004e;
+        }
+        .wrapper{
+            margin-left: auto;
+            margin-right: auto;
+           
+        }
+        .body-custom{
+            font-family: "Source Code Pro";
+        }
+        .bg-custom{
+            background-color: var(--dark-pink);
+            color: white;
+        }
+        .left-column-custom{
+            background-color: var(--light-pink);
+        }
+        h1{
+            font-size: 4em;
+            color:var(--dark-pink);
+        }
+        h2{
+            
+            font-size: 1em;
+        }
+
+        h3{
+            font-size: 1em;
+            color: white;
+            padding-left: 1em;
+            text-align: center;
+            padding: 6px 0;
+        }
+        p{
+            text-align: right;
+        }
+        
+        .center-custom{
+            position: relative;
+            text-align: center;
+        }
+        .top-margin-custom-1{
+            margin-top: 6em;
+        }
+        .top-margin-custom-2{
+            margin-top: 7.5em;
+        }
+
+        img{
+            width: 78px;
+            height: auto;
+        }
+        .navbar__toggle .bar{
+            display: block;
+            cursor: pointer;
+        }
+        
+        form button{
+            color: pink;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        form button:hover{
+            background: pink;
+            color: white;
+
+        }
+
+        .button-1{
+            border:none;
+            color:white;
+            width:100%;
+            text-align: center;
+            padding: 52px 0;
+            border-radius: 50%;
+            background-color: var(--dark-pink);
+        }
+        .button-1:active {
+        box-shadow: 4px 4px rgb(184, 184, 184);
+        transform: translateY(4px);
+        }
+
+        .button-2{
+            border:none;
+            color:white;
+            width:27px;
+            text-align: center;
+            padding: 14px 0;
+            margin-left: 40%;
+            border-radius: 50%;
+        }
+        .button-2:active {
+        box-shadow: 2px 2px rgb(184, 184, 184);
+        transform: translateY(4px);
+        }
+
+        .label {
+        align-self: center;
+        justify-self: center;
+
+        font-size: 30px;
+        font-weight: bold;
+        }
+
+        #work {
+        grid-area: 1 / 2 / 1 / 2;
+        }
+        #break {
+        grid-area: 1 / 4 / 1 / 4;
+        }
+
+        .timer {
+        display: flex;
+        align-self: center;
+        justify-self: center;
+
+        font-size: 30px;
+        font-weight: bold;
+        }
+
+        .button-3 {
+            background: none;
+            border: none;
+            margin-top: px;
+        }
+
+
+        #start {
+        grid-area: 3 / 2 / 3 / 2;
+        }
+
+
+        #stop {
+        grid-area: 3 / 4 / 3 / 4;
+        }
+
+    </style>
+
+    <nav id="darkBg1" class="navbar bg-custom">
+        <div class="container p-2 " style="text-align: center">
+                Welcome to Hopitivity! Click the timer to start your study session, and check out some of the tools on this page during your break. Customize your dashboard on the right. Happy studying:)
+        </div>
+        
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="lightBg1" class="col-3 left-column-custom">
+                <br>
+                <div id="accentT1" style="width:32%;height:45px;border-radius: 45px;background-color:white;text-align: center">
+                    <div class="container">
+                        <div id="work-timer" class="timer">
+                            <p id="w_minutes">25</p><p class="semicolon">:</p><p id="w_seconds">00</p>
+                        </div>
+                        <button id="start" class="btn" onclick="audio.play()">Start</button>
+    
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div>
+                    <h2 id="accentT2" class="mt-4">
+                        NOTEPAD
+                    </h2>
+                    <div id="darkBg2" style="width:95%;height:550px;border-radius:20px;background-color:var(--dark-pink)">
+                        <div class="form-group">
+                            <textarea id="accentT3" class="form-control" rows="20"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="lightBg2" class="col-3 left-column-custom">
+                
+                <br>
+                <div id="accentT4" style="width:27%;height:45px;border-radius: 45px;background-color:white;text-align: center">
+                    <div class="container">
+                        <div style="text-align: center" id="break-timer" class="timer">
+                            <p id="b_minutes">5</p><p class="semicolon">:</p><p id="b_seconds">00</p>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button id="stop" class="btn" onclick="audio.play()">Pause</button>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">
+                                <button id="reset" class="btn" onclick="audio.play()">Reset</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+               
+               <br>
+               <br>
+               <br>
+               <br>
+                <div>
+                    <h2 id="accentT5" class="mt-4">
+                        SPOTIFY
+                    </h2>
+                    
+                    <div style="width:90%;height:550px;border-radius: 20px;background-color:white;"> <iframe src="https://open.spotify.com/embed/playlist/2lxg8xQwi6s5ItaZjDc34t" width="100%" height=100% frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div id="darkBg3" class="mt-4 mb-4" style= "margin-left: 1em; margin-right: 2em;width:750px;height:30px;border-radius: 45px;background-color: var(--dark-pink);">
+                    <h3>
+                        generate task
+                    </h3>
+                </div>
+                
+                <div class="row mb-4"style= "margin-left: 1em; margin-right: 2em;"">
+                    <div id="lightBg3" style="width:100%;height:170px;border-radius: 20px;background-color:var(--light-pink)">
+                        <h2 class= "p-2" id="accentT6">><span id="thingToDo"></span></h2>
+                    </div>
+                </div>
+             
+                <div id="darkBg4" class="mt-2 mb-4" style= "margin-left: 1em; margin-right: 2em;width:750px;height:30px;border-radius: 45px;background-color: var(--dark-pink);">
+                    <h3>
+                        generate quote
+                    </h3>
+                </div>
+
+                <div class="row mb-4"style= "margin-left: 1em; margin-right: 2em;">
+                    <div id="lightBg4" style="width:100%;height:170px;border-radius: 20px;background-color:var(--light-pink)">
+                        <h2 class= "p-2" id="accentT7">><span id="quote"></span></h2>
+                    </div>
+                </div>
+
+                <div id="darkBg5" class="mt-2 mb-4" style= "margin-left: 1em; margin-right: 2em;width:750px;height:30px;border-radius: 45px;background-color: var(--dark-pink);">
+                    <h3>
+                        fun fact about cats:
+                    </h3>
+                </div>
+                
+                <div class="row" style= "margin-left: 1em; margin-right: 2em;">
+                    <div id="lightBg5" style="width:100%;height:170px;border-radius: 20px;background-color:var(--light-pink)">
+                        <h2 class= "p-2" id="accentT8">><span id="fact"></span></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <div class="top-margin-custom-1"> 
+                    <button id="darkBg6" class = "button-1" id="button" onclick="thingToDoFunction();audio.play()">
+                        go
+                    </button>
+                </div>
+            
+                <div class="top-margin-custom-2">
+                    <button id="darkBg7" class = "button-1" id="button" onclick="quoteFunction();audio.play()">
+                        go
+                    </button>
+                </div>
+
+        
+                <div class="top-margin-custom-2">
+                    <button id="darkBg8" class = "button-1" id="button" onclick="factFunction();audio.play()">
+                        go
+                    </button>
+                </div>
+             
+            </div>
+
+
+            <div class="col-1">
+                <div class="mt-4"> 
+                    <button class = "button-2" id="button" onclick="lightColorFunction('var(--light-pink)');audio.play()" style="background-color: var(--light-pink);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="lightColorFunction('var(--light-blue)');audio.play()" style="background-color: var(--light-blue);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="lightColorFunction('var(--light-green)');audio.play()" style="background-color: var(--light-green);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="lightColorFunction('var(--light-sky-blue)');audio.play()" style="background-color: var(--light-sky-blue);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="lightColorFunction('var(--light-purple)');audio.play()" style="background-color: var(--light-purple);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="lightColorFunction('var(--light-orange)');audio.play()" style="background-color: var(--light-orange);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1" style= "margin-left: 43%;"> 
+                    <h2 id="accentT9">C1</h2>
+                    
+                </div>
+            
+                <div class="mt-4"> 
+                    <button class = "button-2" id="button" onclick="darkColorFunction('var(--dark-pink)');audio.play()" style="background-color: var(--dark-pink);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="darkColorFunction('var(--dark-blue)');audio.play()" style="background-color: var(--dark-blue);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="darkColorFunction('var(--dark-green)');audio.play()" style="background-color: var(--dark-green);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="darkColorFunction('var(--dark-sky-blue)');audio.play()" style="background-color: var(--dark-sky-blue);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="darkColorFunction('var(--dark-purple)');audio.play()" style="background-color: var(--dark-purple);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="darkColorFunction('var(--dark-orange)');audio.play()" style="background-color: var(--dark-orange)">
+                        
+                    </button>
+                </div>
+                <div class="mt-1" style= "margin-left: 43%;"> 
+                    <h2 id="accentT10">C2</h2>
+                </div>
+                <div class="mt-4"> 
+                    <button class = "button-2" id="button" onclick="accentColorFunction('var(--accent-pink)');audio.play()" style="background-color: var(--accent-pink);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="accentColorFunction('var(--accent-blue)');audio.play()" style="background-color: var(--accent-blue);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="accentColorFunction('var(--accent-green)');audio.play()" style="background-color: var(--accent-green);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="accentColorFunction('var(--accent-sky-blue)');audio.play()" style="background-color: var(--accent-sky-blue);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="accentColorFunction('var(--accent-purple)');audio.play()" style="background-color: var(--accent-purple);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1"> 
+                    <button class = "button-2" id="button" onclick="accentColorFunction('var(--accent-orange)');audio.play()" style="background-color: var(--accent-orange);">
+                        
+                    </button>
+                </div>
+                <div class="mt-1" style= "margin-left: 43%;"> 
+                    <h2 id="accentT11">C3</h2>
+                </div>
+            </div>
+         </div>  
+         <div class="row">
+            <div class="mt-3" id="lightBg6" style="background: var(--light-pink);">
+                <!-- resource referred to for rabbit animation: https://www.tutorialspoint.com/javascript/javascript_animation.htm -->
+                <script>
+                    var imgObj ;
+                    var animate ;
+                    function init(){
+                    imgObj = document.getElementById('myImage');
+                    imgObj.style.position= 'relative'; 
+                    imgObj.style.left = '0px'; 
+                    }
+                    function moveRight(){
+                        x = parseInt(imgObj.style.left)
+                        if(x > window.screen.width){
+                            imgObj.style.left = 0;
+                            imgObj.style.left = parseInt(imgObj.style.left) + window.screen.width/60 + 'px'; 
+                            animate = setTimeout(moveRight,20);
+                    }
+                        else{
+                            imgObj.style.left = parseInt(imgObj.style.left) + window.screen.width/60 + 'px'; 
+                            animate = setTimeout(moveRight,20);
+                    }
+                    }
+                    function slowBunny(){
+                        clearTimeout(animate); 
+                        imgObj.style.left = '0px';
+                    }
+                
+                    window.onload =init; 
+                    
+                </script>
+            
+                <form>
+                    <img id="myImage" src="htn-project-logo.png" width="100" height="100"/>
+                    
+                    <input type="button" id="accentT12"style="background: white; border:none; margin-top: 0; margin-bottom: 10px; padding: 5px;" value="Speed up the bunny" onclick="moveRight();" />
+                    <input type="button" id="accentT13"style="background: white; border:none; margin-top: 0; margin-bottom: 10px; padding: 5px;" value="Slow down the bunny" onclick="slowBunny();" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var thingsToDo = ["Take a walk around the house", "Do 50 jumping jacks", "Do 15 pushups", "Do 30 lunges", "Breathe deeply","Make yourself a drink",
+        "Organize your desk/binder", "Make your bed","Write in a journal", "Vaccuum the room", "Get a snack", "Go get a hug", "Test all the pens in your drawer and throw out the ones that don't work",
+        "Organize your closet", "Do 60 russian twists", "Look outside your window and enjoy the peace", "Doodle something", "Water your plant", "Come up with a short story idea"]
+        
+        function thingToDoFunction(){
+            randomNumber = Math.round(Math.random()*(thingsToDo.length-1));
+            randomThingToDo = thingsToDo[randomNumber];
+            document.getElementById('thingToDo').innerHTML = randomThingToDo;
+        }
+
+        const randomQuoteUrl = "https://api.quotable.io/random";
+
+        function quoteFunction(){
+            fetch(randomQuoteUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('quote').textContent = `${data.content} —${data.author}`;
+            })
+        }
+
+        /*const randomFactUrl = "https://uselessfacts.jsph.pl/random.json?language=en";
+
+        function factFunction(){
+            fetch(randomFactUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('fact').textContent = `${data.text}`;
+            })
+        }*/
+        const randomFactUrl = "https://catfact.ninja/fact";
+
+        function factFunction(){
+            fetch(randomFactUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('fact').textContent = `${data.fact}`;
+            })
+        }
+
+        function lightColorFunction(lightColor){
+            document.getElementById('lightBg1').style.background = lightColor;
+            document.getElementById('lightBg2').style.background = lightColor;
+            document.getElementById('lightBg3').style.background = lightColor;
+            document.getElementById('lightBg4').style.background = lightColor;
+            document.getElementById('lightBg5').style.background = lightColor;
+            document.getElementById('lightBg6').style.background = lightColor;
+        }
+        function darkColorFunction(darkColor){
+            document.getElementById('darkBg1').style.background = darkColor;
+            document.getElementById('darkBg2').style.background = darkColor;
+            document.getElementById('darkBg3').style.background = darkColor;
+            document.getElementById('darkBg4').style.background = darkColor;
+            document.getElementById('darkBg5').style.background = darkColor;
+            document.getElementById('darkBg6').style.background = darkColor;
+            document.getElementById('darkBg7').style.background = darkColor;
+            document.getElementById('darkBg8').style.background = darkColor;
+        }
+        function accentColorFunction(accentColor){
+            document.getElementById('accentT1').style.color = accentColor;
+            document.getElementById('accentT2').style.color = accentColor;
+            document.getElementById('accentT3').style.color = accentColor;
+            document.getElementById('accentT4').style.color = accentColor;
+            document.getElementById('accentT5').style.color = accentColor;
+            document.getElementById('accentT6').style.color = accentColor;
+            document.getElementById('accentT7').style.color = accentColor;
+            document.getElementById('accentT8').style.color = accentColor;
+            document.getElementById('accentT9').style.color = accentColor;
+            document.getElementById('accentT10').style.color = accentColor;
+            document.getElementById('accentT11').style.color = accentColor;
+            document.getElementById('accentT12').style.color = accentColor;
+            document.getElementById('accentT13').style.color = accentColor;
+        }
+        function textColorFunction(textColor){
+            document.getElementById('textColor').style.color = textColor;
+        }
+
+        //resource referred to for pomodoro timer: https://github.com/learn-webdevYT/pomodoro-timer
+        var start = document.getElementById('start');
+        var stop = document.getElementById('stop');
+
+        var wm = document.getElementById('w_minutes');
+        var ws = document.getElementById('w_seconds');
+
+        var bm = document.getElementById('b_minutes');
+        var bs = document.getElementById('b_seconds');
+
+        var startTimer;
+
+        start.addEventListener('click', function(){
+            if(startTimer === undefined){
+                startTimer = setInterval(timer, 1000)
+            } else {
+                alert("Timer is already running");
+            }
+        })
+
+        reset.addEventListener('click', function(){
+        wm.innerText = 25;
+        ws.innerText = "00";
+
+        bm.innerText = 5;
+        bs.innerText = "00";
+
+        document.getElementById('counter').innerText = 0;
+        stopInterval()
+        startTimer = undefined;
+        })
+
+        stop.addEventListener('click', function(){
+            stopInterval();
+            startTimer = undefined;
+        })
+
+        function timer(){
+            if(ws.innerText != 0){
+                ws.innerText--;
+                if(ws.innerText <= 9){
+                    ws.innerText = "0"+ws.innerText
+                }
+            } else if(wm.innerText != 0 && ws.innerText == 0){
+                ws.innerText = 59;
+                wm.innerText--;
+            }
+
+            if(wm.innerText == 0 && ws.innerText == 0){
+                if(bs.innerText != 0){
+                    bs.innerText--;
+                    if(bs.innerText <= 9){
+                    bs.innerText = "0"+ bs.innerText
+                }
+                } else if(bm.innerText != 0 && bs.innerText == 0){
+                    bs.innerText = 59;
+                    bm.innerText--;
+                }
+            }
+
+
+            if(wm.innerText == 0 && ws.innerText == 0 && bm.innerText == 4 && bs.innerText == 59){
+                audio2.play();
+                document.getElementById('counter').innerText++;
+            }
+
+            if(wm.innerText == 0 && ws.innerText == 0 && bm.innerText == 0 && bs.innerText == 0){
+                wm.innerText = 25;
+                ws.innerText = "00";
+
+                bm.innerText = 5;
+                bs.innerText = "00";
+
+                audio2.play();
+                document.getElementById('counter').innerText++;
+            }
+        }
+
+        function stopInterval(){
+            clearInterval(startTimer);
+        }
+
+    </script> 
+    <script type="text/javascript">
+        const audio = new Audio();
+        audio.src= "click-2.mp3";
+    </script>
+
+    <script type="text/javascript">
+        const audio2 = new Audio();
+        audio2.src= "alarm-1.mp3";
+    </script>
+</body>
+</div>
+
+</html>
